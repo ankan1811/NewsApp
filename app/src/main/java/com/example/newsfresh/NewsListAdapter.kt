@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapter<NewsViewHolder>() {
+class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapter<NewsViewHolder>() { //NewsViewHolder is the view Holder class
 
     private val items: ArrayList<News> = ArrayList()
 
@@ -25,7 +25,7 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
         return items.size
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) { //News List Adapter is the adapter class.
         val currentItem = items[position]
         holder.titleView.text = currentItem.title
         holder.author.text = currentItem.author
