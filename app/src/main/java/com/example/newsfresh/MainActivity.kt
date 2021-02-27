@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this) //This is for Linear Layout manager(context) .
+        //Similarly you have grid Layout manager where you mention the length and breadth of the grid and also staggered layout manager.
         fetchData()
         mAdapter = NewsListAdapter(this)
         recyclerView.adapter = mAdapter
