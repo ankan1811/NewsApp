@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData() {
-        val url = "https://newsapi.org/v2/top-headlines?country=in&category=science&piKey=1f4a12d2698e432ea9cf18126dcc7acd"
+        val url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=359b406b081f4310a99322cbe409a1f9" //Top headlines for US 
+        //Use your personal API key.This is mine
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             url,
