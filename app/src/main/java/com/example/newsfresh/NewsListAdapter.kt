@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 
 class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapter<NewsViewHolder>() {//We link this adapter to the recycler view present in the main activity
     //NewsViewHolder is the view Holder class
-
+    //We get the instance of the interface NewsItemClicked created below (Type of newsItemClicked)
     private val items: ArrayList<News> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder { //It is called when view holder is created and it will return a view holder
@@ -18,8 +18,10 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false) //We use layout inflator to convert xml format data to view format 
         //Because we need the data in view format only.We will inflate R.layout.item_news(item_news.xml to view format)
         val viewHolder = NewsViewHolder(view)//Then we pass this view
-        view.setOnClickListener{
-            listener.onItemClicked(items[viewHolder.adapterPosition])
+        view.setOnClickListener{ //on click listener is also an interface
+            listener.onItemClicked(items[viewHolder.adapterPosition])//items[position] we get this position from view holder
+            //(whatever the position of the view holder is inside the adapter)
+            //We have already passed the item in NewsItemClicked below
         }
         return viewHolder //We will create an instance of class NewsViewHolder present below and return it from here return newsViewHolder(view)
     }
@@ -54,5 +56,6 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { //New
 }
 
 interface NewsItemClicked {
-    fun onItemClicked(item: News)
+    fun onItemClicked(item: News) //We need a callback to tell the activity from adapter that an item has been clicked.(Using interfaces)
+    //This is that interface
 }
