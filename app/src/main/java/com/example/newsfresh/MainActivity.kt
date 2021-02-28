@@ -14,7 +14,7 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), NewsItemClicked {
 
-    private lateinit var mAdapter: NewsListAdapter
+    private lateinit var mAdapter: NewsListAdapter //create instance of the NewsListAdapter class
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         recyclerView.layoutManager = LinearLayoutManager(this) //This is for Linear Layout manager(context) .
         //Similarly you have grid Layout manager where you mention the length and breadth of the grid and also staggered layout manager.
         fetchData()
-        mAdapter = NewsListAdapter(this)
-        recyclerView.adapter = mAdapter
+        mAdapter = NewsListAdapter(this)//fetch the data and put it into the adapter
+        recyclerView.adapter = mAdapter //We link the madapter (adapter that we created) to the recyclerview and the data is succesfully passed
     }
 
     private fun fetchData() {
