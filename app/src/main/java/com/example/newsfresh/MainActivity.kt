@@ -59,7 +59,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
-    override fun onItemClicked(item: News) {
+    override fun onItemClicked(item: News) { //Implement google custom tabs as mentioned in the documentation so that 
+        //on clicking on news link it will open inside our app only and not in google chrome.
         val builder =  CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
