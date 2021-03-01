@@ -27,28 +27,30 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         recyclerView.adapter = mAdapter //We link the madapter (adapter that we created) to the recyclerview and the data is succesfully passed
     }
 
-    private fun fetchData() {
+    private fun fetchData() { //We justy do the API call here 
         val url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=359b406b081f4310a99322cbe409a1f9" //Top headlines for US 
         //Use your personal API key.This is mine
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             url,
             null,
+            //We will take this news of news.kt out in MainActivity with the help of  JSON object.
             Response.Listener {
-                val newsJsonArray = it.getJSONArray("articles")
-                val newsArray = ArrayList<News>()
-                for(i in 0 until newsJsonArray.length()) {
-                    val newsJsonObject = newsJsonArray.getJSONObject(i)
-                    val news = News(
+                val newsJsonArray = it.getJSONArray("articles")//We need to take the articles JSON array out first from the response.
+                val newsArray = ArrayList<News>()//Now we will pass this to a news list
+                for(i in 0 until newsJsonArray.length()) { //iterate in the json array
+                    //We only need 4 things from the json array : title,author,url,urlToImage.
+                    val newsJsonObject = newsJsonArray.getJSONObject(i)//Get the ith index from the array and then use that ith index to get those 4 things.
+                    val news = News( //Parsing opf data
                         newsJsonObject.getString("title"),
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
                         newsJsonObject.getString("urlToImage")
                     )
-                    newsArray.add(news)
+                    newsArray.add(news) //We will just put the news object in the array
                 }
 
-                mAdapter.updateNews(newsArray)
+                mAdapter.updateNews(newsArray)//Then we need to pass that array of type news in the adapter(updateNews function is present in NewsListAdfapter.kt)
             },
             Response.ErrorListener {
 
