@@ -13,6 +13,7 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
     //We get the instance of the interface NewsItemClicked created below (Type of newsItemClicked)
     private val items: ArrayList<News> = ArrayList() //Now Adapter will not have any data from the beginning .It has to be fetched
 
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder { //It is called when view holder is created and it will return a view holder
         //Number of view holders present on the screen=number of times this function will be called
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false) //We use layout inflator to convert xml format data to view format 
@@ -38,7 +39,8 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
         //we get access to title view present in NewsVierwHolder below and we will set the text to current item.
         holder.titleView.text = currentItem.title //CurrentItem is of news type
         holder.author.text = currentItem.author
-        Glide.with(holder.itemView.context).load(currentItem.imageUrl).into(holder.image)
+        //We will put the image from url in iimageView with the help of glide
+        Glide.with(holder.itemView.context).load(currentItem.imageUrl).into(holder.image) //Here context is holder.itemView.context
     }
 
     fun updateNews(updatedNews: ArrayList<News>) {
