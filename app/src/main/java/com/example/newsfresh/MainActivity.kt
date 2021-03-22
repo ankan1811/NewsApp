@@ -23,8 +23,10 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         recyclerView.layoutManager = LinearLayoutManager(this) //This is for Linear Layout manager(context) .
         //Similarly you have grid Layout manager where you mention the length and breadth of the grid and also staggered layout manager.
         fetchData()
-        mAdapter = NewsListAdapter(this)//fetch the data and put it into the adapter
+        mAdapter = NewsListAdapter(this)//fetch the data and put it into the adapter(we craete an instance of the adapter class)
         recyclerView.adapter = mAdapter //We link the madapter (adapter that we created) to the recyclerview and the data is succesfully passed
+        //we could also do: val items=fetchdata()
+        //mAdapter=NewsListAdapter(items)
     }
 
     private fun fetchData() { //We justy do the API call here 
